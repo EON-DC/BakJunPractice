@@ -1,7 +1,9 @@
+package Silver4;
+
 import java.io.*;
 import java.util.Stack;
 
-class Main {
+public class Practice10773 {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

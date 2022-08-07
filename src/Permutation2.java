@@ -1,11 +1,18 @@
+import java.util.Arrays;
+
 public class Permutation2 {
     public static void main(String[] args) {
-        int num = 3;
-        int[] arr = {1, 2, 3};
+        int num = 10;
+        int[] arr = new int[100];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int)(Math.random() * 20000)-10000;
+        }
+        System.out.println("Arrays.toString(arr[0]) = " + Arrays.toString(arr));
+
         int[] output = new int[num];
         boolean[] visited = new boolean[num];
 
-        perm(arr, output, visited, 0, num, 3);
+        perm(arr, output, visited, 0, num, 2);
 
     }
 
@@ -14,7 +21,7 @@ public class Permutation2 {
             print(output, r);
         }
 
-        for (int i = 0; i < r; i++) {
+        for (int i = 0; i < num; i++) {
             if (visited[i] != true) {
                 visited[i] = true;
                 output[depth] = arr[i];
@@ -29,7 +36,10 @@ public class Permutation2 {
     public static void print(int[] arr, int r) {
 
         for (int i = 0; i < r; i++) {
-            System.out.print(arr[i] + " ");
+            System.out.print(arr[i] + "");
+            if (i < r - 1) {
+                System.out.print(" ");
+            }
         }
         System.out.println();
     }
