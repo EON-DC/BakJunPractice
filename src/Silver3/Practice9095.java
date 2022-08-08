@@ -1,7 +1,8 @@
+package Silver3;
+
 import java.io.*;
 
-class Main {
-
+public class Practice9095 {
     static Integer[] dp;
 
     public static void main(String[] args) throws IOException {
@@ -38,5 +39,4 @@ class Main {
 
         return dp[n];
     }
-
 }
