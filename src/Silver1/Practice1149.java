@@ -1,7 +1,10 @@
+package Silver1;
+
 import java.io.*;
 import java.util.StringTokenizer;
 
-class Main {
+public class Practice1149 {
+
     final static int Red = 0;
     final static int Green = 1;
     final static int Blue = 2;
