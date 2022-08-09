@@ -1,9 +1,11 @@
+package Silver2;
+
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-class Main {
+public class Practice1012_BFS {
     static int M, N, K, count;
     static int dx[] = {-1, 0, 1, 0};
     static int dy[] = {0, 1, 0, -1};
