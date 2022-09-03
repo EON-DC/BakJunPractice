@@ -3,7 +3,7 @@ package Silver4;
 import java.io.*;
 import java.util.Stack;
 
-public class Practcie9012 {
+public class Practice9012 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter((new OutputStreamWriter(System.out)));
