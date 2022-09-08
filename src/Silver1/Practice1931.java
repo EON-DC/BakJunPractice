@@ -42,15 +42,15 @@ public class Practice1931 {
             }
         });
 
-        int count = 0;
+        int cnt = 0;
         int prevEndTime = 0;
         for (int i = 0; i < MeetingNum; i++) {
             if (prevEndTime <= meetingList[i][0]) {
                 prevEndTime = meetingList[i][1];
-                count++;
+                cnt++;
             }
         }
-        bw.write(count + "");
+        bw.write(cnt + "");
         bw.flush();
         bw.close();
         br.close();
