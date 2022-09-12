@@ -10,10 +10,10 @@ public class Practice10845 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter((new OutputStreamWriter(System.out)));
 
-        int inputLine = Integer.parseInt(br.readLine());
+        int line = Integer.parseInt(br.readLine());
         StringTokenizer token;
         Queue<Integer> queue = new LinkedList<>();
-        for (int i = 0; i < inputLine; i++) {
+        for (int i = 0; i < line; i++) {
             token = new StringTokenizer(br.readLine());
             String command = token.nextToken();
             switch (command) {
