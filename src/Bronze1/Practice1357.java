@@ -14,8 +14,8 @@ public class Practice1357 {
         String X = token.nextToken();
         String Y = token.nextToken();
 
-        int result = Rev(Rev(X) + Rev(Y));
-        bw.write(result + "\n");
+        int answer = Rev(Rev(X) + Rev(Y));
+        bw.write(answer + "\n");
         bw.flush();
         bw.close();
         br.close();
