@@ -1,53 +1,64 @@
 import java.io.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
-class Main{
-    static char map[][];
+class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
+        test();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        int N = Integer.parseInt(br.readLine());
-        map = new char[N][N];
-
-        star(0, 0, N, false);
-
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                bw.write(map[i][j] + "");
+        StringBuilder s = new StringBuilder();
+        while (true) {
+            String unit = br.readLine();
+            if (unit == null) {
+                break;
             }
-            bw.write("\n");
+            s.append(unit);
         }
-        bw.flush();
-        br.close();
-        bw.close();
+
+        System.out.println(solution(s.toString()));
     }
 
-    private static void star(int x, int y, int N, boolean isBlank) {
-        if (isBlank) {
-            for (int i = x; i < x+N; i++) {
-                for (int j = y; j < y+N; j++) {
-                    map[i][j] = ' ';
-                }
-            }
-            return;
+
+    public static int solution(String s) {
+        String[] lines = s.split("\n");
+        int N = Integer.parseInt(lines[0]);
+
+    }
+
+    public static boolean test() {
+        int result;
+        result = solution("3\n" +
+                "6 8 9\n" +
+                "5\n" +
+                "2 5 2 4 7");
+        if (result != 2) {
+            return false;
         }
-        if (N == 1) {
-            map[x][y] = '*';
-            return;
+        result = solution("2\n" +
+                "19 20\n" +
+                "7\n" +
+                "14 12 16 19 16 1 5");
+        if (result != 4) {
+            return false;
+        }
+        result = solution("4\n" +
+                "23 32 25 28\n" +
+                "10\n" +
+                "5 27 10 16 24 20 2 32 18 7");
+        if (result != 3) {
+            return false;
         }
 
-        int size = N / 3;
-        int count = 0;
-        for (int i = x; i < x+N; i += size) {
-            for (int j = y; j < y+N; j += size) {
-                count++;
-                if (count == 5) {
-                    star(i, j, N / 3, true);
-                } else {
-                    star(i, j, N / 3, false);
-                }
-            }
+        result = solution("10\n" +
+                "11 17 5 2 20 7 5 5 20 7\n" +
+                "5\n" +
+                "18 18 15 15 17");
+        if (result != 2) {
+            return false;
         }
+
+        return true;
     }
 }
