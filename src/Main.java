@@ -10,11 +10,11 @@ class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder s = new StringBuilder();
         while (true) {
-            String unit = br.readLine();
-            if (unit == null) {
+            String test = br.readLine();
+            if (test == null) {
                 break;
             }
-            s.append(unit);
+            s.append(test);
         }
 
         System.out.println(solution(s.toString()));
