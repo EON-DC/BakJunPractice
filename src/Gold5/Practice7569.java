@@ -7,9 +7,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Practice7569 {
-}
-
-class Main {
 
     static int map[][][];
 
