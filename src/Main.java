@@ -1,64 +1,56 @@
-import java.io.*;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 class Main {
-
-    public static void main(String[] args) throws IOException{
-        test();
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder s = new StringBuilder();
-        while (true) {
-            String test = br.readLine();
-            if (test == null) {
-                break;
+        int pn = Integer.parseInt(br.readLine()); // point number
+        while (pn-- > 0) {
+            String[] line = br.readLine().split(" ");
+            int a = Integer.parseInt(line[0]);
+            int b = Integer.parseInt(line[1]);
+            String[] command = new String[10000];
+            boolean[] visited = new boolean[10000];
+            Queue<Integer> queue = new LinkedList<>();
+
+            visited[a] = true;
+            queue.add(a);
+            Arrays.fill(command, "");
+            while (!queue.isEmpty() && !visited[b]) {
+                int now = queue.poll();
+                int D = (2 * now) % 10000;
+                int S = (now == 0) ? 9999 : now - 1;
+                int L = (now % 1000) * 10 + now / 1000;
+                int R = (now % 10) * 1000 + now / 10;
+
+                if (!visited[D]) {
+                    queue.add(D);
+                    visited[D] = true;
+                    command[D] = command[now] + "D";
+                }
+
+                if (!visited[S]) {
+                    queue.add(S);
+                    visited[S] = true;
+                    command[S] = command[now] + "L";
+                }
+
+                if (!visited[L]) {
+                    queue.add(L);
+                    visited[L] = true;
+                    command[L] = command[now] + "L";
+                }
+
+                if (!visited[R]) {
+                    queue.add(R);
+                    visited[R] = true;
+                    command[R] = command[now] + "R";
+                }
             }
-            s.append(test);
+
+            System.out.println(command[b]);
         }
-
-        System.out.println(solution(s.toString()));
-    }
-
-
-    public static int solution(String s) {
-        String[] lines = s.split("\n");
-        int N = Integer.parseInt(lines[0]);
-
-    }
-
-    public static boolean test() {
-        int result;
-        result = solution("3\n" +
-                "6 8 9\n" +
-                "5\n" +
-                "2 5 2 4 7");
-        if (result != 2) {
-            return false;
-        }
-        result = solution("2\n" +
-                "19 20\n" +
-                "7\n" +
-                "14 12 16 19 16 1 5");
-        if (result != 4) {
-            return false;
-        }
-        result = solution("4\n" +
-                "23 32 25 28\n" +
-                "10\n" +
-                "5 27 10 16 24 20 2 32 18 7");
-        if (result != 3) {
-            return false;
-        }
-
-        result = solution("10\n" +
-                "11 17 5 2 20 7 5 5 20 7\n" +
-                "5\n" +
-                "18 18 15 15 17");
-        if (result != 2) {
-            return false;
-        }
-
-        return true;
     }
 }
