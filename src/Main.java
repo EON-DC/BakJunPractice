@@ -3,54 +3,101 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+
 class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int pn = Integer.parseInt(br.readLine()); // point number
-        while (pn-- > 0) {
-            String[] line = br.readLine().split(" ");
-            int a = Integer.parseInt(line[0]);
-            int b = Integer.parseInt(line[1]);
-            String[] command = new String[10000];
-            boolean[] visited = new boolean[10000];
-            Queue<Integer> queue = new LinkedList<>();
 
-            visited[a] = true;
-            queue.add(a);
-            Arrays.fill(command, "");
-            while (!queue.isEmpty() && !visited[b]) {
-                int now = queue.poll();
-                int D = (2 * now) % 10000;
-                int S = (now == 0) ? 9999 : now - 1;
-                int L = (now % 1000) * 10 + now / 1000;
-                int R = (now % 10) * 1000 + now / 10;
+    static class Node{
+        char data;
+        Node left;
+        Node right;
 
-                if (!visited[D]) {
-                    queue.add(D);
-                    visited[D] = true;
-                    command[D] = command[now] + "D";
-                }
-
-                if (!visited[S]) {
-                    queue.add(S);
-                    visited[S] = true;
-                    command[S] = command[now] + "L";
-                }
-
-                if (!visited[L]) {
-                    queue.add(L);
-                    visited[L] = true;
-                    command[L] = command[now] + "L";
-                }
-
-                if (!visited[R]) {
-                    queue.add(R);
-                    visited[R] = true;
-                    command[R] = command[now] + "R";
-                }
-            }
-
-            System.out.println(command[b]);
+        Node(char data) {
+            this.data = data;
         }
     }
+
+    static class Tree{
+        public Node root;
+
+        public void createNode(char data, char leftData, char rightData) {
+            if (root == null) {
+                root = new Node(data);
+                root.left = leftData != '.' ? new Node(leftData) : null;
+                root.right = rightData != '.' ? new Node(rightData) : null;
+            } else {
+                searchNode(root, data, leftData, rightData);
+            }
+        }
+
+        public void searchNode(Node node, char data, char leftData, char rightData) {
+            if (node == null) {
+                return;
+            } else if (node.data == data) {
+                node.left = leftData != '.' ? new Node(leftData) : null;
+                node.right = rightData != '.' ? new Node(rightData) : null;
+            } else {
+                searchNode(node.left, data, leftData, rightData);
+                searchNode(node.right, data, leftData, rightData);
+            }
+        }
+
+        public void preOrder(Node node) {
+            if (node != null) {
+                System.out.print(node.data);
+                if (node.left != null) {
+                    preOrder(node.left);
+                }
+                if (node.right != null) {
+                    preOrder(node.right);
+                }
+            }
+        }
+
+        public void inOrder(Node node) {
+            if (node != null) {
+                if (node.left != null) {
+                    inOrder(node.left);
+                }
+                System.out.print(node.data);
+                if (node.right != null) {
+                    inOrder(node.right);
+                }
+            }
+        }
+
+        public void postOrder(Node node) {
+            if (node != null) {
+                if (node.left != null) {
+                    postOrder(node.left);
+                }
+                if (node.right != null) {
+                    postOrder(node.right);
+                }
+                System.out.print(node.data);
+            }
+        }
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine()); // test cycle
+        Tree t = new Tree();
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+            char root = st.nextToken().charAt(0);
+            char left = st.nextToken().charAt(0);
+            char right = st.nextToken().charAt(0);
+
+            t.createNode(root, left, right);
+        }
+        t.preOrder(t.root);
+        System.out.println();
+        t.inOrder(t.root);
+        System.out.println();
+        t.postOrder(t.root);
+        br.close();
+    }
+
+
 }
