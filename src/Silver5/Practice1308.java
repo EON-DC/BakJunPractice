@@ -9,77 +9,57 @@ import java.util.StringTokenizer;
 
 public class Practice1308 {
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        String[] startDate = br.readLine().split(" ");
+        String[] endDate = br.readLine().split(" ");
 
-        StringTokenizer token = new StringTokenizer(br.readLine());
-        int[] start = new int[3];
-        int[] dDayInt = new int[3];
-        for (int i = 0; i < 3; i++) {
-            start[i] = Integer.parseInt(token.nextToken());
-        }
-        token = new StringTokenizer(br.readLine());
-        for (int i = 0; i < 3; i++) {
-            dDayInt[i] = Integer.parseInt(token.nextToken());
-        }
+        int startYear = Integer.parseInt(startDate[0]);
+        int startMonth = Integer.parseInt(startDate[1]);
+        int startDay = Integer.parseInt(startDate[2]);
 
+        int endYear = Integer.parseInt(endDate[0]);
+        int endMonth = Integer.parseInt(endDate[1]);
+        int endDay = Integer.parseInt(endDate[2]);
 
-        // String 화
-        String startDay = "";
-        startDay += String.valueOf(start[0]) + " ";
-        if (start[1] <= 9) {
-            startDay += "0" + String.valueOf(start[1]);
-        } else {
-            startDay += String.valueOf(start[1]);
-        }
-        startDay += " " + String.valueOf(start[2]);
+        long countOfStartDay = countOfDays(startYear, startMonth, startDay);
+        long countOfEndDay = countOfDays(endYear, endMonth, endDay);
 
-        String dDay = "";
-        dDay += String.valueOf(dDayInt[0]) + " ";
-        if (dDayInt[1] <= 9) {
-            dDay += "0" + String.valueOf(dDayInt[1]);
-        } else {
-            dDay += String.valueOf(dDayInt[1]);
-        }
-        dDay += " " + String.valueOf(dDayInt[2]);
-
-
-        // SimpleDateFormat 화
-        SimpleDateFormat formattedDate = new SimpleDateFormat("yyyy MM dd");
-        Calendar scal = Calendar.getInstance();
-        Calendar dcal = Calendar.getInstance();
-
-        Date startDt = formattedDate.parse(startDay);
-        Date dDayDt = formattedDate.parse(dDay);
-        scal.setTime(startDt);
-        dcal.setTime(dDayDt);
-        // 1000년 검증
-        scal.add(Calendar.YEAR, 1000);
-        int verify = scal.getTime().compareTo(dDayDt);
-        if (verify < 0) {
+        if ((startYear + 1000 < endYear)
+                || (startYear + 1000 == endYear && startMonth < endMonth)
+                || (startYear + 1000 == endYear && startMonth == endMonth && startDay <= endDay)) {
             System.out.println("gg");
-            return;
         } else {
-            scal.add(Calendar.YEAR, -1000);
+            System.out.println("D-" + (countOfEndDay - countOfStartDay));
         }
 
-        // day 누적해서 남은 날짜가 몇일인지?
-        int dayCount = 0;
-        while (true) {
-            if (scal.getTime().compareTo(dDayDt) == 0) {
-                break;
-            } else {
-                scal.add(Calendar.DATE, 1);
-                dayCount++;
+
+    }
+
+    private static int[] dayOfMonth(int year) {
+        int[] endOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        if ((year % 4 == 0)
+                && (year % 100 != 0)
+                || (year % 400 == 0)) {
+            endOfMonth[1] = 29;
+        }
+        return endOfMonth;
+    }
+
+    private static long countOfDays(int year, int month, int day) {
+        long dayCount = 0;
+        int[] date;
+        for (int i = 1; i < year; i++) {
+            date = dayOfMonth(i);
+            for (int j = 0; j < 12; j++) {
+                dayCount += date[j];
             }
         }
-        bw.write("D-" + dayCount);
-
-
-        bw.flush();
-        bw.close();
-        br.close();
-
+        date = dayOfMonth(year);
+        for (int i = 0; i < month - 1; i++) {
+            dayCount += date[i];
+        }
+        dayCount += day;
+        return dayCount;
     }
 }
