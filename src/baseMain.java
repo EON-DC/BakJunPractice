@@ -8,7 +8,7 @@ class baseMain {
     static String src = "";
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         br = new BufferedReader(new StringReader(src));
 
     }

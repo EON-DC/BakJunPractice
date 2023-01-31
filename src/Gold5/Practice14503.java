@@ -1,9 +1,10 @@
+package Gold5;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 
-class Main {
+public class Practice14503 {
     static String src = "11 10\n" +
             "7 4 0\n" +
             "1 1 1 1 1 1 1 1 1 1\n" +
@@ -128,7 +129,7 @@ class Main {
             return false;
         }
 
-        public void goBack(){
+        public void goBack() {
             switch (curDirection) {
                 case 2:
                     curRow -= 1;
@@ -165,22 +166,22 @@ class Main {
         public boolean hasLeftCleaned() {
             switch (curDirection) {
                 case 0:
-                    if (hasCleanedMap[curRow][curCol-1] == false) {
+                    if (hasCleanedMap[curRow][curCol - 1] == false) {
                         return false;
                     }
                     break;
                 case 1:
-                    if (hasCleanedMap[curRow -1][curCol] == false) {
+                    if (hasCleanedMap[curRow - 1][curCol] == false) {
                         return false;
                     }
                     break;
                 case 2:
-                    if (hasCleanedMap[curRow][curCol+1] == false) {
+                    if (hasCleanedMap[curRow][curCol + 1] == false) {
                         return false;
                     }
                     break;
                 case 3:
-                    if (hasCleanedMap[curRow+1][curCol] == false) {
+                    if (hasCleanedMap[curRow + 1][curCol] == false) {
                         return false;
                     }
                     break;
@@ -191,22 +192,22 @@ class Main {
         public boolean hasLeftSpace() {
             switch (curDirection) {
                 case 0:
-                    if (curCol - 1 >= 1 && map[curRow][curCol-1] == 0)
+                    if (curCol - 1 >= 1 && map[curRow][curCol - 1] == 0)
                         return true;
 
                     break;
                 case 1:
-                    if (curRow -1 >= 1 && map[curRow -1][curCol] == 0)
+                    if (curRow - 1 >= 1 && map[curRow - 1][curCol] == 0)
                         return true;
 
                     break;
                 case 2:
-                    if (curCol + 1 < M - 1 && map[curRow][curCol+1] == 0)
+                    if (curCol + 1 < M - 1 && map[curRow][curCol + 1] == 0)
                         return true;
 
                     break;
                 case 3:
-                    if (curRow +1 < N-1 && map[curRow+1][curCol] == 0)
+                    if (curRow + 1 < N - 1 && map[curRow + 1][curCol] == 0)
                         return true;
 
                     break;
@@ -222,3 +223,4 @@ class Main {
         }
     }
 }
+
