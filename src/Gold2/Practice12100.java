@@ -1,10 +1,11 @@
+package Gold2;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.*;
 
-class Main {
+public class Practice12100 {
     static String src = "7\n" +
             "2 2 2 2 2 2 2\n" +
             "2 0 2 2 2 2 2\n" +
@@ -31,7 +32,7 @@ class Main {
             }
         }
 //        printBoard(board);
-        DFS( 5);
+        DFS(5);
         System.out.println(result);
 
 
@@ -44,7 +45,7 @@ class Main {
         }
     }
 
-    public static int[][] getBoard () {
+    public static int[][] getBoard() {
         int[][] cloneBoard = new int[N][N];
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
@@ -54,10 +55,10 @@ class Main {
         return cloneBoard;
     }
 
-    public static void DFS ( int depth) {
+    public static void DFS(int depth) {
         if (depth == 0) {
             int[][] copyBoard = getBoard();
-            for(int order : orders){
+            for (int order : orders) {
                 switch (order) {
                     case 1:
                         moveTop(copyBoard);
@@ -87,7 +88,7 @@ class Main {
 
         for (int i = 1; i < 5; i++) {
             orders.add(i);
-            DFS( depth - 1);
+            DFS(depth - 1);
             orders.remove(orders.size() - 1);
         }
     }
@@ -101,6 +102,7 @@ class Main {
         }
         return cloneMax;
     }
+
     static void moveLeft(int[][] board) {
         for (int i = 0; i < N; i++) {
             Queue<Integer> queue = new LinkedList<>();
@@ -128,7 +130,7 @@ class Main {
                 }
             }
             List<Integer> list = calculate(queue);
-            int index = N-1;
+            int index = N - 1;
             for (int src : list) {
                 board[i][index--] = src;
             }
@@ -162,7 +164,7 @@ class Main {
                 }
             }
             List<Integer> list = calculate(queue);
-            int index = N-1;
+            int index = N - 1;
             for (int src : list) {
                 board[index--][i] = src;
             }
@@ -181,3 +183,4 @@ class Main {
         return list;
     }
 }
+
