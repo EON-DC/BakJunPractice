@@ -33,6 +33,8 @@ class Main {
         int distance = 0;
         int truck = cap;
 
+        long x = 10;
+
         for(int i = n-1 ; i >=0 ; i--){
             if(arr[i] == 0) continue;
             if(arr[i] > truck) {
