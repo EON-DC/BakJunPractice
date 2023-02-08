@@ -1,10 +1,12 @@
+package Silver2;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
-class Main {
+public class Practice1124 {
     static String src = "2 100000";
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static int a, b;
@@ -23,7 +25,7 @@ class Main {
 
         int count = 0;
         for (int i = a; i <= b; i++) {
-            if(isUnderPrime(i)){
+            if (isUnderPrime(i)) {
                 count++;
             }
         }
@@ -32,13 +34,13 @@ class Main {
 
     }
 
-    static public void setUp(){
+    static public void setUp() {
         notPrimeSet[0] = true;
         notPrimeSet[1] = true;
         for (int i = 2; i <= 10000; i++) {
             int num = i;
             if (notPrimeSet[num] == false) {
-                for (int j = num + num; j <= 10000; j+=num) {
+                for (int j = num + num; j <= 10000; j += num) {
                     notPrimeSet[j] = true;
                 }
             }
@@ -52,7 +54,7 @@ class Main {
 
     }
 
-    static public boolean isUnderPrime(int num){
+    static public boolean isUnderPrime(int num) {
         int count = 0;
         for (int prime : primeSet) {
             while (num % prime == 0) {
@@ -71,3 +73,4 @@ class Main {
     }
 
 }
+
