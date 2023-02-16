@@ -1,12 +1,13 @@
+package Silver1;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class Main {
+public class Practice1058 {
+
     static String src = "15\n" +
             "NNNNNNNNNNNNNNY\n" +
             "NNNNNNNNNNNNNNN\n" +
@@ -59,11 +60,11 @@ class Main {
         queue.add(new Node(friendIndex, depth));
         while (!queue.isEmpty()) {
             Node poll = queue.poll();
-            if(poll.depth == 0){
+            if (poll.depth == 0) {
                 continue;
             }
             for (int i = 0; i < N; i++) {
-                if(map[i][poll.friendIndex] == 'Y' && visited[i] == false){
+                if (map[i][poll.friendIndex] == 'Y' && visited[i] == false) {
                     visited[i] = true;
                     queue.add(new Node(i, poll.depth - 1));
                 }
@@ -78,7 +79,7 @@ class Main {
         result = Math.max(result, count);
     }
 
-    static class Node{
+    static class Node {
         int friendIndex;
         int depth;
 
@@ -88,3 +89,4 @@ class Main {
         }
     }
 }
+
