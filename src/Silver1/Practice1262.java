@@ -1,9 +1,11 @@
+package Silver1;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 
-class Main {
+public class Practice1262 {
     static String src = "27 0 0 53 53";
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static int N;
@@ -45,7 +47,8 @@ class Main {
         if (distance >= 26) {
             distance %= 26;
         }
-        return (char) ('a' + distance) ;
+        return (char) ('a' + distance);
     }
 
 }
+
